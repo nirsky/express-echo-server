@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json -w",
-    "start": "nodemon dist/index.js"
+    "start": "node dist/index.js",
+    "start:watch": "nodemon dist/index.js"
   },
   "author": "",
   "license": "ISC",
