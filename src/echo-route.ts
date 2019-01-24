@@ -1,21 +1,31 @@
 import {Router, Request, Response} from 'express';
+import * as prettyjson from 'prettyjson';
 
 const router = Router();
+const RESET_TOKEN = "\x1b[0m";
+const UNDERSCORE_TOKEN = "\x1b[4m";
 
-const PATH = `/some/path`;
 
-router.put(PATH, (req: Request, res: Response) => {
-    console.log(`\n\n*** NEW REQUEST ***
+const logRequest = (req: Request) => {
+    console.log(`\n\n🆕 NEW ${UNDERSCORE_TOKEN}${req.method.toLocaleUpperCase()}${RESET_TOKEN} REQUEST 🆕
     
- • URL Params: ${JSON.stringify(req.params.roomId)}
+• Path: ${req.path}
 
- • Headers: ${JSON.stringify(req.headers, null, 2)}
+• Headers: 
+${prettyjson.render(req.headers)}
 
- • Query: ${JSON.stringify(req.query, null, 2)}
+• Query:
+${prettyjson.render(req.query)}
 
- • Payload: ${JSON.stringify(req.body, null, 2)}`)
+• Payload:
+${prettyjson.render(req.body)}`)
+};
 
-    res.status(200).send(true)
-});
+['get', 'post', 'put', 'patch', 'delete', 'copy', 'head', 'options', 'purge', 'lock', 'unlock', 'propfind'].forEach(method => {
+    router[method]('/*', (req: Request, res: Response) => {
+        logRequest(req);
+        res.status(200).send(true)
+    });
+})
 
 export default router;
