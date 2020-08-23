@@ -8,6 +8,11 @@ Clone this repo to your machine and run `yarn` to install dependencies.
 run `yarn start` to get the server running in watch mode.  
 The server will start at port `1020`.
 
+To start with a different port, use the `PORT` env param:
+```sh
+PORT=3000 yarn start
+```
+
 ## Methods
 
 The server will expose the following HTTP methods:  

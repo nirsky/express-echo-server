@@ -13,7 +13,7 @@ const app = express()
     .options('*', cors())
     .use(router);
 
-const PORT = 1020;
+const PORT = process.env.PORT ?? 1020;
 
 const routeToMethod = (route: any) => Object.keys(route.methods)[0].toLocaleUpperCase();
 
