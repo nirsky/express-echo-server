@@ -1,13 +1,12 @@
 import * as express from 'express';
 import * as compression from 'compression';
-import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import router from './echo-route';
 
 const app = express()
     .disable('x-powered-by')
-    .use(bodyParser.json({limit: '5mb'}))
-    .use(bodyParser.urlencoded({ extended: false }))
+    .use(express.json({limit: '5mb'}))
+    .use(express.urlencoded({ extended: false }))
     .use(compression())
     .use(cors())
     .options('*', cors())
