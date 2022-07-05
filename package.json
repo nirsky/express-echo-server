@@ -12,6 +12,7 @@
     "compression": "^1.7.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "prettier": "^2.7.1",
     "prettyjson": "^1.2.1"
   },
   "devDependencies": {

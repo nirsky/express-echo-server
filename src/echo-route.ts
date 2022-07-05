@@ -8,15 +8,19 @@ const UNDERSCORE_TOKEN = '\x1b[4m';
 const logSection = (name: string, payload: any) => {
     if (!payload || !Object.keys(payload)?.length) return '';
     return `\n\n• ${name}:
-${prettyjson.render(payload)}`
-}
+${prettyjson.render(payload)}`;
+};
 
 const logRequest = (req: Request) => {
     console.log(`\n\n🆕 NEW ${UNDERSCORE_TOKEN}${req.method.toLocaleUpperCase()}${RESET_TOKEN} REQUEST 🆕
     
 • Path: ${req.path}
-• Full Url: ${req.url}${logSection('Headers', req.headers)}${logSection('Query', req.query)}${logSection('Payload', req.body)}
-`);};
+• Full Url: ${req.url}${logSection('Headers', req.headers)}${logSection('Query', req.query)}${logSection(
+        'Payload',
+        req.body
+    )}
+`);
+};
 
 ['get', 'post', 'put', 'patch', 'delete', 'copy', 'head', 'options', 'purge', 'lock', 'unlock', 'propfind'].forEach(
     (method) => {
